@@ -8,6 +8,8 @@ dataset_mean = (dataset_mean_value, dataset_mean_value, dataset_mean_value)
 dataset_std = (dataset_std_value, dataset_std_value, dataset_std_value)
 batch_size = 50
 image_size = 64
+num_samples_in_MNIST = 2000
+num_samples_in_USPS = 1800
 
 # params for source dataset
 src_dataset = "MNIST"
@@ -29,10 +31,10 @@ d_model_restore = "snapshots/ADDA-critic-final.pt"
 
 # params for training network
 num_gpu = 1
-num_epochs_pre = 100
+num_epochs_pre = 500
 log_step_pre = 20
-eval_step_pre = 20
-save_step_pre = 100
+eval_step_pre = 100
+save_step_pre = 400
 num_epochs = 2000
 log_step = 100
 save_step = 100

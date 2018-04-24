@@ -1,7 +1,7 @@
 """Dataset setting and data loader for USPS.
 
 Modified from
-https://github.com/mingyuliutw/CoGAN/blob/master/cogan_pytorch/src/dataset_usps.py
+https://github.com/mingyuliutw/CoGAN_PyTorch/blob/master/src/dataset_usps.py
 """
 
 import gzip
@@ -13,7 +13,7 @@ import numpy as np
 import torch
 import torch.utils.data as data
 from torchvision import datasets, transforms
-
+from torch.utils.data.sampler import SubsetRandomSampler
 import params
 
 
@@ -128,9 +128,35 @@ def get_usps(train):
                         transform=pre_process,
                         download=True)
 
-    usps_data_loader = torch.utils.data.DataLoader(
-        dataset=usps_dataset,
-        batch_size=params.batch_size,
-        shuffle=True)
+    if train==True: # the training set has to be edited
+        indices = list(range(len(usps_dataset)))
+        # to shuffle everytime:
+        np.random.shuffle(indices)
+        # the nb of samples to train should be fixed to 2000 according to (https://arxiv.org/abs/1702.05464)
+        num_train=params.num_samples_in_USPS
+        split = int(num_train)
+
+        USPS_idx = indices[:split]
+        USPS_sampler = SubsetRandomSampler(USPS_idx)
+
+
+
+        usps_data_loader = torch.utils.data.DataLoader(
+            dataset=usps_dataset,
+            batch_size=params.batch_size,
+            sampler=USPS_sampler,
+            shuffle=False)
+
+
+
+        print("loading data -  USPS DATA LOADER length is : ")
+        print(len(usps_data_loader))
+        print("USPS DATA shape : ")
+        print("multiplied by the batch size (" + str(params.batch_size) + ") it should be just enough ( "+ str(params.batch_size) + "x" + str(len(usps_data_loader)) + " = "+ str(params.batch_size*len(usps_data_loader)) +") to cover the " + str(params.num_samples_in_USPS) + "samples drawn from USPS" )
+    else:
+        usps_data_loader = torch.utils.data.DataLoader(
+            dataset=usps_dataset,
+            batch_size=params.batch_size,
+            shuffle=True)
 
     return usps_data_loader

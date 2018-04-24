@@ -5,7 +5,7 @@ from core import eval_src, eval_tgt, train_src, train_tgt
 from models import Discriminator, LeNetClassifier, LeNetEncoder
 from utils import get_data_loader, init_model, init_random_seed
 import numpy as np
-#edit s 
+
 if __name__ == '__main__':
 
 
@@ -19,6 +19,7 @@ if __name__ == '__main__':
         src_data_loader_eval = get_data_loader(params.src_dataset, train=False)
         tgt_data_loader = get_data_loader(params.tgt_dataset)
         tgt_data_loader_eval = get_data_loader(params.tgt_dataset, train=False)
+
         # load models
         src_encoder = init_model(net=LeNetEncoder(),
                                  restore=None)
@@ -72,7 +73,7 @@ if __name__ == '__main__':
         print(">>> iteration #" + str(iter) + " done <<<")
 
     acc_list = np.array(acc_list)
-    print(">>> all the " + str(iter) + " iterations are done <<<")
+    print(">>> all the " + str(iter) + " iterations done <<<")
     print("Accuracy vector is :")
     print(acc_list)
     print("Avg Accuracy = {:2%}".format(np.mean(acc_list)))
