@@ -1,5 +1,7 @@
 # PyTorch-ADDA
-A PyTorch implementation for [Adversarial Discriminative Domain Adaptation](https://arxiv.org/abs/1702.05464).
+ This is a modified PyTorch implementation for [Adversarial Discriminative Domain Adaptation](https://arxiv.org/abs/1702.05464) forked from Corenel's github (https://github.com/corenel/pytorch-adda)
+
+ The aim is to train the source encoder (on the source train set) 50 times and then compute the average and standard deviation of the accuracy when testing it on the target test set.  
 
 ## Environment
 - Python 3.6
@@ -7,7 +9,8 @@ A PyTorch implementation for [Adversarial Discriminative Domain Adaptation](http
 
 ## Usage
 
-I only test on MNIST -> USPS, you can just run the following command:
+Only training a "src only" model on MNIST and then testing it on USPS (x50)
+The following command starts the program:
 
 ```shell
 python3 main.py
@@ -57,11 +60,15 @@ In this experiment, I use three types of network. They are very simple.
   )
   ```
 
-## Result
+## I got the following results
 
-|                                    | MNIST (Source) | USPS (Target) |
+|  Accuracy when testing on USPS     | average (over 50 runs) | standard deviation |
 | :--------------------------------: | :------------: | :-----------: |
-| Source Encoder + Source Classifier |   99.140000%   |  83.978495%   |
-| Target Encoder + Source Classifier |                |  97.634409%   |
+| Source Encoder + Source Classifier |   89.139785%   |  1.501531%   |
 
-Domain Adaptation does work (97% vs 83%).
+
+## I try to understand why it is different from the results presented in the original branch (https://github.com/corenel/pytorch-adda):
+
+|                                    | USPS (Target) |
+| :--------------------------------: | :-----------: |
+| Source Encoder + Source Classifier |  83.978495%   |
