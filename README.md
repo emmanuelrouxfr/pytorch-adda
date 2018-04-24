@@ -61,10 +61,9 @@ In this experiment, I use three types of network. They are very simple.
   ```
 
 ## I got the following results
-|         <td colspan = "2">  </td> | Accuracy when testing on USPS               |
-|  setup    | average (over 50 runs) | standard deviation |
+|  setup    | average accuracy (over 50 runs) | standard deviation |
 | :--------------------------------: | :------------: | :-----------: |
-| Source Encoder + Source Classifier |   89.139785%   |  1.501531%   |
+| Source Encoder + Source Classifier |   87.241935%   |  2.212214%   |
 
 
 ## I try to understand why it is different from the results presented in the original branch (https://github.com/corenel/pytorch-adda):
