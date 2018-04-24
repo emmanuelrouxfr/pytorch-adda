@@ -61,7 +61,7 @@ In this experiment, I use three types of network. They are very simple.
   ```
 
 ## I got the following results
-|           | Accuracy when testing on USPS               |
+|         <td colspan = "2">  </td> | Accuracy when testing on USPS               |
 |  setup    | average (over 50 runs) | standard deviation |
 | :--------------------------------: | :------------: | :-----------: |
 | Source Encoder + Source Classifier |   89.139785%   |  1.501531%   |
